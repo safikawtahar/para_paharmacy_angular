@@ -1,5 +1,8 @@
 pipeline {
     agent any // Utilise le nœud maître
+  environment {
+        DOCKER_HOST = "tcp://localhost:2375"
+    }
     stages {
         stage('Checkout SCM') {
             steps {
