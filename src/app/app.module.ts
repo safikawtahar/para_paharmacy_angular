@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './AppComponent';
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { SliderComponent } from './components/slider/slider.component';
@@ -27,12 +27,14 @@ import { CartComponent } from './components/carts/carts.component';
     ProductVisageComponent,
     ProductCorpsComponent,
     CartComponent,
+    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot([])
+    RouterModule,
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
