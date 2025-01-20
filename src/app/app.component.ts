@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   showMainContent = true;  // Variable pour contrôler l'affichage du contenu principal
-
+  title:String="";
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
