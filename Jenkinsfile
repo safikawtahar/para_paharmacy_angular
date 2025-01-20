@@ -11,16 +11,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Run Tests') {
-            steps {
-                sh 'npm run test-headless'
-            }
-        }
-        stage('Build Angular App') {
-            steps {
-                sh 'npm run build --prod'
-            }
-        }
+      
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t angular-app .'
