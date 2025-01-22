@@ -1,20 +1,14 @@
 pipeline {
-    agent any // Utilise le nœud maître
-  environment {
-        DOCKER_HOST = "tcp://localhost:2375"
+    agent any
+    environment {
+        DOCKER_HOST = "tcp://localhost:2375" // Utiliser le socket TCP
     }
     stages {
-        stage('Checkout SCM') {
+        stage('Check Docker') {
             steps {
-                git branch: 'master', url: 'https://github.com/safikawtahar/para_paharmacy_angular.git'
+                sh 'docker version'
             }
         }
-        stage('Install Node modules') {
-            steps {
-                sh 'npm install'
-            }
-        }
-      
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t angular-app .'
