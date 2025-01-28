@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-  "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]
+        hosts = ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]
     }
     stages {
         stage('Check Docker') {
