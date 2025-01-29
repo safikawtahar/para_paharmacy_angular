@@ -1,12 +1,13 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_HOSTS = "tcp://0.0.0.0:2375,unix:///var/run/docker.sock"
-    }
+     environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
     stages {
-        stage('Check Docker') {
+        stage('Docker Login') {
             steps {
-                sh 'docker version'
+                // Add --password-stdin to run docker login command non-interactively
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('Build Docker Image') {
