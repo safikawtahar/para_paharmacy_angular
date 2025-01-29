@@ -1,13 +1,12 @@
 pipeline {
     agent any
-     environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-	}
+    environment {
+        DOCKER_HOST = "tcp://localhost:2375" // Utiliser le socket TCP
+    }
     stages {
-        stage('Docker Login') {
+        stage('Check Docker') {
             steps {
-                // Add --password-stdin to run docker login command non-interactively
-sh 'echo -n $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker version'
             }
         }
         stage('Build Docker Image') {
