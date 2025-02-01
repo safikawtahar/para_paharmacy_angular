@@ -15,13 +15,13 @@ pipeline {
                 sh 'docker build -t $DOCKER_IMAGE .'
             }
         }
-        stage('Login to Docker Hub') {
-            steps {
-                withCredentials([string(credentialsId: 'docker_hub', variable: 'DOCKER_PASSWORD')]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login -u "kawtharsafi" --password-stdin'
-                }
-            }
+       stage('Login to Docker Hub') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'docker_hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+            sh 'echo $DOCKER_PASSWORD | docker login -u "$DOCKER_USERNAME" --password-stdin'
         }
+    }
+}
         stage('Push to Docker Hub') {
             steps {
                 sh 'docker push $DOCKER_IMAGE'
