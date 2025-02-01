@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_HOST = "tcp://localhost:2375" // Utiliser le socket TCP
-        DOCKER_IMAGE = "ton-dockerhub-username/angular-app" // Remplace par ton username Docker Hub
+        DOCKER_IMAGE = "kawtharsafi/angular-app" // Remplace par ton username Docker Hub
     }
     stages {
         stage('Check Docker') {
@@ -17,8 +17,8 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'docker-hub-credentials', variable: 'DOCKER_PASSWORD')]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login -u "ton-dockerhub-username" --password-stdin'
+                withCredentials([string(credentialsId: 'docker_hub', variable: 'DOCKER_PASSWORD')]) {
+                    sh 'echo $DOCKER_PASSWORD | docker login -u "kawtharsafi" --password-stdin'
                 }
             }
         }
